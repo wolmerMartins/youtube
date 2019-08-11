@@ -1,0 +1,31 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="search" />
+    <input type="submit" (click)="searchVideos()" value="Buscar" />
+</div>
+
+<ng-template [ngIf]="!getSelectedVideo()" [ngIfElse]="showVideo">
+    <div class="videos-container">
+        <mat-card *ngFor="let video of videos.items">
+            <mat-card-header>
+                <mat-card-title>{{ video.snippet.title }}</mat-card-title>
+                <mat-card-subtitle>{{ video.snippet.channelTitle }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{ video.snippet.thumbnails.high.url }}" />
+            <mat-card-content>
+                <p>{{ video.snippet.description }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="getVideoId(video.id)">ASSISTIR</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <div class="videos-buttons" *ngIf="videos.items">
+            <button (click)="prevPage()" [disabled]="disabledPrevButton()">Anterior</button>
+            <button (click)="nextPage()" [disabled]="disabledNextButton()">Próxima</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #showVideo>
+    <app-watch [video]="selectedVideo" [returnToHome]="returnToHome"></app-watch>
+</ng-template>

@@ -1,0 +1,23 @@
+.watch-container {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.watch-container button {
+    margin-top: 1rem;
+    border: 1px solid var(--default-color);
+    background: transparent;
+    padding: .312rem;
+    color: var(--default-color);
+    cursor: pointer;
+    transition: all .4s linear;
+}
+
+.watch-container button:hover {
+    background: var(--default-color-hover);
+    color: #FFF;
+}
